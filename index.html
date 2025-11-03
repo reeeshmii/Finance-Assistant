@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        warning: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .message-enter {
+            animation: messageEnter 0.3s ease;
+        }
+        @keyframes messageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold text-gray-800">FinSet</h1>
+                <p class="text-gray-600 text-sm mt-2">Expense Tracker</p>
+            </div>
+            <nav class="mt-8">
+                <a href="#" class="flex items-center px-6 py-3 text-primary bg-blue-50 border-r-4 border-primary">
+                    <i class="fas fa-home mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-receipt mr-3"></i>
+                    Expenses
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-chart-pie mr-3"></i>
+                    Analytics
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Welcome to Your Finance Assistant!</h1>
+                <p class="text-gray-600 mt-2">Track expenses and get AI-powered insights</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column - Stats & Chat -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl shadow-sm p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">This Week</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 mt-2" id="weekly-spending">$0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-calendar-week text-primary text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-sm p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">This Month</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 mt-2" id="monthly-spending">$0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-calendar-alt text-success text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-sm p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Top Category</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 mt-2" id="top-category">-</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-tag text-purple-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Chat Assistant -->
+                    <div class="bg-white rounded-2xl shadow-sm">
+                        <div class="p-6 border-b">
+                            <h2 class="text-xl font-bold text-gray-800">💬 AI Finance Assistant</h2>
+                            <p class="text-gray-600 text-sm">Track expenses and get insights using natural language</p>
+                        </div>
+                        <div class="p-6">
+                            <!-- Chat Messages -->
+                            <div id="chat-messages" class="h-80 overflow-y-auto space-y-4 mb-4">
+                                <div class="message-enter">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-primary to-purple-600 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-robot text-white text-sm"></i>
+                                        </div>
+                                        <div class="bg-gray-50 rounded-2xl rounded-tl-none px-4 py-3 max-w-md">
+                                            <p class="text-gray-800">👋 Hello! I'm your personal finance assistant. I can help you:</p>
+                                            <p class="text-gray-800 mt-2">• 💰 <strong>Track expenses:</strong> "I spent ₹15 on lunch"</p>
+                                            <p class="text-gray-800">• 📊 <strong>View summaries:</strong> "Show my spending this week"</p>
+                                            <p class="text-gray-800">• 🎯 <strong>Get insights:</strong> "How much did I spend on food?"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Input -->
+                            <div class="flex space-x-4">
+                                <input 
+                                    type="text" 
+                                    id="user-input"
+                                    placeholder="Type your expense or question..."
+                                    class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                >
+                                <button 
+                                    id="send-btn"
+                                    class="bg-primary text-white rounded-2xl px-6 py-3 hover:bg-blue-600 transition-colors"
+                                >
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+
+                            <!-- Quick Actions -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <button class="quick-action bg-blue-50 text-primary px-4 py-2 rounded-xl text-sm hover:bg-blue-100 transition-colors" data-message="I spent ₹25 on lunch">
+                                    <i class="fas fa-utensils mr-2"></i>Lunch ₹25
+                                </button>
+                                <button class="quick-action bg-green-50 text-green-600 px-4 py-2 rounded-xl text-sm hover:bg-green-100 transition-colors" data-message="Paid ₹15 for Uber">
+                                    <i class="fas fa-car mr-2"></i>Transport ₹15
+                                </button>
+                                <button class="quick-action bg-purple-50 text-purple-600 px-4 py-2 rounded-xl text-sm hover:bg-purple-100 transition-colors" data-message="Show my spending this week">
+                                    <i class="fas fa-chart-pie mr-2"></i>Weekly Summary
+                                </button>
+                                <button class="quick-action bg-orange-50 text-orange-600 px-4 py-2 rounded-xl text-sm hover:bg-orange-100 transition-colors" data-message="How much did I spend on food?">
+                                    <i class="fas fa-shopping-basket mr-2"></i>Food Spending
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Charts & Recent Expenses -->
+                <div class="space-y-8">
+                    <!-- Spending Chart -->
+                    <div class="bg-white rounded-2xl shadow-sm p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Spending by Category</h2>
+                        <div class="h-64">
+                            <canvas id="spendingChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Expenses -->
+                    <div class="bg-white rounded-2xl shadow-sm">
+                        <div class="p-6 border-b">
+                            <h2 class="text-xl font-bold text-gray-800">Recent Expenses</h2>
+                        </div>
+                        <div class="p-6">
+                            <div id="recent-expenses" class="space-y-3">
+                                <p class="text-gray-500 text-center py-4">No expenses yet. Start by adding expenses in the chat!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories Breakdown -->
+                    <div class="bg-white rounded-2xl shadow-sm p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Categories</h2>
+                        <div id="categories-list" class="space-y-2">
+                            <!-- Categories will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class FinanceDashboard {
+            constructor() {
+                this.apiBase = window.location.origin + '/api';
+                this.chart = null;
+                this.initializeChat();
+                this.loadDashboardData();
+                console.log("💰 Finance Dashboard Initialized");
+            }
+
+            initializeChat() {
+                const userInput = document.getElementById('user-input');
+                const sendBtn = document.getElementById('send-btn');
+                const chatMessages = document.getElementById('chat-messages');
+
+                const sendMessage = async () => {
+                    const message = userInput.value.trim();
+                    if (!message) return;
+
+                    // Add user message
+                    this.addMessage(message, 'user');
+                    userInput.value = '';
+                    
+                    // Show typing indicator
+                    this.showTypingIndicator();
+
+                    try {
+                        console.log("📤 Sending message to:", `${this.apiBase}/chat`);
+                        const response = await fetch(`${this.apiBase}/chat`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                message: message,
+                                user_id: 'user123'
+                            })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+                        console.log("📨 Received response:", data);
+                        this.removeTypingIndicator();
+                        
+                        // Add bot response
+                        this.addMessage(data.message, 'bot');
+                        
+                        // Add insights if available
+                        if (data.insights) {
+                            this.addMessage("💡 " + data.insights, 'bot', true);
+                        }
+
+                        // Refresh dashboard data
+                        this.loadDashboardData();
+
+                    } catch (error) {
+                        console.error('❌ Chat error:', error);
+                        this.removeTypingIndicator();
+                        this.addMessage('❌ Error: Could not connect to server. Make sure the backend is running on ' + this.apiBase, 'bot');
+                    }
+                };
+
+                // Event listeners
+                sendBtn.addEventListener('click', sendMessage);
+                userInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') sendMessage();
+                });
+
+                // Quick actions
+                document.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const message = e.target.getAttribute('data-message');
+                        userInput.value = message;
+                        sendMessage();
+                    });
+                });
+
+                // Focus on input
+                userInput.focus();
+            }
+
+            addMessage(text, sender, isInsight = false) {
+                const chatMessages = document.getElementById('chat-messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message-enter';
+                
+                if (sender === 'user') {
+                    messageDiv.innerHTML = `
+                        <div class="flex items-start space-x-3 justify-end">
+                            <div class="bg-primary text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-md">
+                                <p>${text}</p>
+                            </div>
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-600 text-sm"></i>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const bgClass = isInsight ? 'bg-yellow-50 border border-yellow-200' : 'bg-gray-50';
+                    messageDiv.innerHTML = `
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-gradient-to-r from-primary to-purple-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot text-white text-sm"></i>
+                            </div>
+                            <div class="${bgClass} rounded-2xl rounded-tl-none px-4 py-3 max-w-md">
+                                <p class="text-gray-800">${text}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            showTypingIndicator() {
+                const chatMessages = document.getElementById('chat-messages');
+                const typingDiv = document.createElement('div');
+                typingDiv.id = 'typing-indicator';
+                typingDiv.className = 'message-enter';
+                typingDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-r from-primary to-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl rounded-tl-none px-4 py-3">
+                            <div class="flex space-x-1">
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            async loadDashboardData() {
+                try {
+                    console.log("📊 Loading dashboard data...");
+                    
+                    // Load recent expenses
+                    const expensesResponse = await fetch(`${this.apiBase}/expenses?days=30`);
+                    if (!expensesResponse.ok) throw new Error('Failed to load expenses');
+                    const expensesData = await expensesResponse.json();
+
+                    // Load category spending
+                    const categoryResponse = await fetch(`${this.apiBase}/spending-by-category?days=30`);
+                    if (!categoryResponse.ok) throw new Error('Failed to load categories');
+                    const categoryData = await categoryResponse.json();
+
+                    this.updateStats(expensesData.expenses, categoryData);
+                    this.updateRecentExpenses(expensesData.expenses);
+                    this.updateChart(categoryData);
+                    this.updateCategories(categoryData);
+
+                } catch (error) {
+                    console.error('❌ Error loading dashboard data:', error);
+                }
+            }
+
+            updateStats(expenses, categoryData) {
+                // Weekly spending (last 7 days)
+                const weeklyExpenses = expenses.filter(exp => {
+                    const expenseDate = new Date(exp.date);
+                    const weekAgo = new Date();
+                    weekAgo.setDate(weekAgo.getDate() - 7);
+                    return expenseDate >= weekAgo;
+                });
+                const weeklyTotal = weeklyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+                document.getElementById('weekly-spending').textContent = `₹${weeklyTotal.toFixed(2)}`;
+
+                // Monthly spending (all expenses from last 30 days)
+                const monthlyTotal = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+                document.getElementById('monthly-spending').textContent = `₹${monthlyTotal.toFixed(2)}`;
+
+                // Top category
+                const topCategory = Object.entries(categoryData).sort((a, b) => b[1] - a[1])[0];
+                if (topCategory) {
+                    document.getElementById('top-category').textContent = topCategory[0];
+                } else {
+                    document.getElementById('top-category').textContent = '-';
+                }
+            }
+
+            updateRecentExpenses(expenses) {
+                const container = document.getElementById('recent-expenses');
+                
+                if (!expenses || expenses.length === 0) {
+                    container.innerHTML = '<p class="text-gray-500 text-center py-4">No expenses yet. Start by adding expenses in the chat!</p>';
+                    return;
+                }
+
+                const recentExpenses = expenses.slice(0, 5);
+                container.innerHTML = recentExpenses.map(expense => `
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-receipt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">${expense.description}</p>
+                                <p class="text-sm text-gray-600">${expense.date}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-bold text-red-600">-₹${expense.amount.toFixed(2)}</p>
+                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">${expense.category}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            updateChart(categoryData) {
+                const ctx = document.getElementById('spendingChart').getContext('2d');
+                
+                // Destroy existing chart
+                if (this.chart) {
+                    this.chart.destroy();
+                }
+
+                const categories = Object.keys(categoryData);
+                const amounts = Object.values(categoryData);
+
+                if (categories.length === 0) {
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.fillStyle = '#9CA3AF';
+                    ctx.font = '16px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('No data yet', ctx.canvas.width / 2, ctx.canvas.height / 2);
+                    return;
+                }
+
+                // Colors for chart
+               const backgroundColors = [
+                  '#FF6B6B', // food - red
+                  '#4ECDC4', // groceries - teal (distinct color)
+                  '#45B7D1', // transportation - blue
+                  '#96CEB4', // entertainment - green
+                  '#FFEAA7', // shopping - yellow
+                  '#DDA0DD', // bills - purple
+                  '#98D8C8', // healthcare - mint
+                  '#F7DC6F', // education - gold
+                  '#BB8FCE', // travel - lavender
+                  '#85C1E9', // utilities - light blue
+                  '#F8C471', // dining - orange
+                  '#82E0AA', // rent - light green
+                  '#F9E79F', // subscriptions - beige
+                  '#CCD1D1'  // other - gray
+                  ];
+                this.chart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: categories,
+                        datasets: [{
+                            data: amounts,
+                            backgroundColor: backgroundColors,
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true,
+                                }
+                            }
+                        },
+                        cutout: '60%'
+                    }
+                });
+            }
+
+            updateCategories(categoryData) {
+                const container = document.getElementById('categories-list');
+                const categories = Object.entries(categoryData).sort((a, b) => b[1] - a[1]);
+                
+                if (categories.length === 0) {
+                    container.innerHTML = '<p class="text-gray-500 text-center">No categories yet</p>';
+                    return;
+                }
+
+                container.innerHTML = categories.map(([category, amount]) => `
+                    <div class="flex justify-between items-center py-2">
+                        <span class="text-gray-700 capitalize">${category}</span>
+                        <span class="font-bold text-gray-800">₹${amount.toFixed(2)}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new FinanceDashboard();
+        });
+    </script>
+</body>
+</html>

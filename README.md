@@ -36,6 +36,7 @@ Python 3.8+
 OpenAI API key (optional, for enhanced AI features)
 
 🛠️ Technology Stack
+
 Backend
 
 FastAPI: Modern, fast web framework for building APIs

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance AI Assistant</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Finance AI Assistant - Fixed</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -21,32 +23,19 @@
             }
         }
     </script>
+
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        .message-enter {
-            animation: messageEnter 0.3s ease;
-        }
+        .message-enter { animation: messageEnter 0.28s ease; }
         @keyframes messageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
         .section-highlight {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(59,130,246,0.04), rgba(147,51,234,0.04));
             border-left: 4px solid #3B82F6;
-        }
-        .logo-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
     </style>
 </head>
@@ -60,41 +49,36 @@
                         <i class="fas fa-wallet text-white text-lg"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-transparent bg-gradient-to-r from-slate-600 to-purple-500 bg-clip-text" >FinSet</h1>
+                        <h1 class="text-2xl font-bold text-transparent bg-gradient-to-r from-slate-600 to-purple-500 bg-clip-text">FinSet</h1>
                         <p class="text-gray-600 text-sm mt-1">Expense Tracker</p>
                     </div>
                 </div>
             </div>
+
             <nav class="mt-8">
-                <a href="#dashboard" class="nav-link flex items-center px-6 py-3 text-primary bg-blue-50 border-r-4 border-primary" data-section="dashboard">
-                    <i class="fas fa-home mr-3"></i>
-                    Dashboard
+                <a href="#dashboard" class="nav-link flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50" data-section="dashboard">
+                    <i class="fas fa-home mr-3"></i> Dashboard
                 </a>
                 <a href="#expenses" class="nav-link flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50" data-section="expenses">
-                    <i class="fas fa-receipt mr-3"></i>
-                    Expenses
+                    <i class="fas fa-receipt mr-3"></i> Expenses
                 </a>
                 <a href="#analytics" class="nav-link flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50" data-section="analytics">
-                    <i class="fas fa-chart-pie mr-3"></i>
-                    Analytics
+                    <i class="fas fa-chart-pie mr-3"></i> Analytics
                 </a>
             </nav>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main -->
         <div class="flex-1">
-            <!-- Dashboard Section -->
+            <!-- Dashboard -->
             <section id="dashboard" class="dashboard-section p-8">
-                <!-- Header -->
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-gray-800">Welcome to Your Finance Assistant!</h1>
                     <p class="text-gray-600 mt-2">Track expenses and get AI-powered insights</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Left Column - Stats & Chat -->
                     <div class="lg:col-span-2 space-y-8">
-                        <!-- Quick Stats -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="bg-white rounded-2xl shadow-sm p-6">
                                 <div class="flex items-center justify-between">
@@ -133,14 +117,13 @@
                             </div>
                         </div>
 
-                        <!-- AI Chat Assistant -->
+                        <!-- Chat -->
                         <div class="bg-white rounded-2xl shadow-sm">
                             <div class="p-6 border-b">
                                 <h2 class="text-xl font-bold text-gray-800">💬 AI Finance Assistant</h2>
                                 <p class="text-gray-600 text-sm">Track expenses and get insights using natural language</p>
                             </div>
                             <div class="p-6">
-                                <!-- Chat Messages -->
                                 <div id="chat-messages" class="h-80 overflow-y-auto space-y-4 mb-4">
                                     <div class="message-enter">
                                         <div class="flex items-start space-x-3">
@@ -148,32 +131,19 @@
                                                 <i class="fas fa-robot text-white text-sm"></i>
                                             </div>
                                             <div class="bg-gray-50 rounded-2xl rounded-tl-none px-4 py-3 max-w-md">
-                                                <p class="text-gray-800">👋 Hello! I'm your personal finance assistant. I can help you:</p>
-                                                <p class="text-gray-800 mt-2">• 💰 <strong>Track expenses:</strong> "I spent ₹15 on lunch"</p>
-                                                <p class="text-gray-800">• 📊 <strong>View summaries:</strong> "Show my spending this week"</p>
-                                                <p class="text-gray-800">• 🎯 <strong>Get insights:</strong> "How much did I spend on food?"</p>
+                                                <p class="text-gray-800">👋 Hello! I'm your personal finance assistant. Try: "I spent ₹15 on lunch" or "Show my spending this week".</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Chat Input -->
                                 <div class="flex space-x-4">
-                                    <input 
-                                        type="text" 
-                                        id="user-input"
-                                        placeholder="Type your expense or question..."
-                                        class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                    >
-                                    <button 
-                                        id="send-btn"
-                                        class="bg-primary text-white rounded-2xl px-6 py-3 hover:bg-blue-600 transition-colors"
-                                    >
+                                    <input type="text" id="user-input" placeholder="Type your expense or question..." class="flex-1 border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <button id="send-btn" class="bg-primary text-white rounded-2xl px-6 py-3 hover:bg-blue-600 transition-colors">
                                         <i class="fas fa-paper-plane"></i>
                                     </button>
                                 </div>
 
-                                <!-- Quick Actions -->
                                 <div class="mt-4 flex flex-wrap gap-2">
                                     <button class="quick-action bg-blue-50 text-primary px-4 py-2 rounded-xl text-sm hover:bg-blue-100 transition-colors" data-message="I spent ₹25 on lunch">
                                         <i class="fas fa-utensils mr-2"></i>Lunch ₹25
@@ -192,9 +162,8 @@
                         </div>
                     </div>
 
-                    <!-- Right Column - Charts & Recent Expenses -->
+                    <!-- Right column -->
                     <div class="space-y-8">
-                        <!-- Spending Chart -->
                         <div class="bg-white rounded-2xl shadow-sm p-6">
                             <h2 class="text-xl font-bold text-gray-800 mb-4">Spending by Category</h2>
                             <div class="h-64">
@@ -202,7 +171,6 @@
                             </div>
                         </div>
 
-                        <!-- Categories Breakdown -->
                         <div class="bg-white rounded-2xl shadow-sm p-6">
                             <h2 class="text-xl font-bold text-gray-800 mb-4">Categories</h2>
                             <div id="categories-list" class="space-y-2">
@@ -213,7 +181,7 @@
                 </div>
             </section>
 
-            <!-- Expenses Section -->
+            <!-- Expenses -->
             <section id="expenses" class="expenses-section hidden p-8">
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-gray-800">Expenses Overview</h1>
@@ -223,14 +191,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div class="lg:col-span-2">
                         <div class="bg-white rounded-2xl shadow-sm">
-                            <div class="p-6 border-b">
-                                <h2 class="text-xl font-bold text-gray-800">All Expenses</h2>
-                            </div>
-                            <div class="p-6">
-                                <div id="all-expenses" class="space-y-4">
-                                    <p class="text-gray-500 text-center py-8">No expenses yet. Start by adding expenses in the chat!</p>
-                                </div>
-                            </div>
+                            <div class="p-6 border-b"><h2 class="text-xl font-bold text-gray-800">All Expenses</h2></div>
+                            <div class="p-6"><div id="all-expenses" class="space-y-4"><p class="text-gray-500 text-center py-8">No expenses yet. Start by adding expenses in the chat!</p></div></div>
                         </div>
                     </div>
 
@@ -256,7 +218,7 @@
                 </div>
             </section>
 
-            <!-- Analytics Section -->
+            <!-- Analytics -->
             <section id="analytics" class="analytics-section hidden p-8">
                 <div class="mb-8">
                     <h1 class="text-3xl font-bold text-gray-800">Advanced Analytics</h1>
@@ -266,9 +228,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-2xl shadow-sm p-6">
                         <h2 class="text-xl font-bold text-gray-800 mb-4">Monthly Trends</h2>
-                        <div class="h-64">
-                            <canvas id="trendsChart"></canvas>
-                        </div>
+                        <div class="h-64"><canvas id="trendsChart"></canvas></div>
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm p-6">
@@ -290,74 +250,83 @@
                     </div>
                 </div>
             </section>
+
         </div>
     </div>
 
     <script>
+        // Helper: parse date reliably as local midnight when ISO date YYYY-MM-DD is provided
+        function parseDateLocal(dateStr) {
+            if (!dateStr) return new Date(0);
+            if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                return new Date(dateStr + 'T00:00:00');
+            }
+            return new Date(dateStr);
+        }
+
+        // Normalize category data: accept object {cat:amt} OR array [{category,amount}]
+        function normalizeCategoryData(raw) {
+            if (!raw) return {};
+            if (Array.isArray(raw)) {
+                return raw.reduce((acc, item) => {
+                    const cat = item.category || item.name || 'uncategorized';
+                    acc[cat] = (acc[cat] || 0) + Number(item.amount || 0);
+                    return acc;
+                }, {});
+            }
+            if (typeof raw === 'object') return raw;
+            return {};
+        }
+
         class FinanceDashboard {
             constructor() {
-                this.apiBase = window.location.origin + '/api';
+                // safer default: allow overriding for dev: window.FIN_API_BASE
+                this.apiBase = (window.FIN_API_BASE && window.FIN_API_BASE.replace(/\/$/, '')) || '/api';
                 this.chart = null;
                 this.trendsChart = null;
-                this.initializeChat();
                 this.setupNavigation();
+                this.initializeChat();
                 this.loadDashboardData();
-                console.log("💰 Finance Dashboard Initialized");
+                console.log("💰 Finance Dashboard Initialized (apiBase=" + this.apiBase + ")");
             }
 
             setupNavigation() {
                 const navLinks = document.querySelectorAll('.nav-link');
-                
                 navLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
-                        
                         const section = link.getAttribute('data-section');
                         this.showSection(section);
                         this.updateActiveNav(link);
                     });
                 });
 
-                // Show dashboard by default
+                // Show dashboard by default and mark nav active
                 this.showSection('dashboard');
+                const defaultLink = document.querySelector('.nav-link[data-section="dashboard"]');
+                if (defaultLink) this.updateActiveNav(defaultLink);
             }
 
             showSection(sectionName) {
-                // Hide all sections
                 document.querySelectorAll('section').forEach(section => {
                     section.classList.add('hidden');
                     section.classList.remove('section-highlight');
                 });
 
-                // Show the target section
                 const targetSection = document.getElementById(sectionName);
                 if (targetSection) {
                     targetSection.classList.remove('hidden');
-                    // Add highlight with delay for smooth transition
-                    setTimeout(() => {
-                        targetSection.classList.add('section-highlight');
-                    }, 50);
-                    
-                    console.log(`📊 Showing section: ${sectionName}`);
-                    
-                    // Load section-specific data
-                    if (sectionName === 'expenses') {
-                        this.loadExpensesData();
-                    } else if (sectionName === 'analytics') {
-                        this.loadAnalyticsData();
-                    }
+                    setTimeout(() => targetSection.classList.add('section-highlight'), 50);
+                    if (sectionName === 'expenses') this.loadExpensesData();
+                    if (sectionName === 'analytics') this.loadAnalyticsData();
                 }
             }
 
             updateActiveNav(activeLink) {
-                // Remove active styles from all links
-                const allLinks = document.querySelectorAll('.nav-link');
-                allLinks.forEach(link => {
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('text-primary', 'bg-blue-50', 'border-r-4', 'border-primary');
                     link.classList.add('text-gray-600', 'hover:bg-gray-50');
                 });
-
-                // Add active styles to clicked link
                 activeLink.classList.remove('text-gray-600', 'hover:bg-gray-50');
                 activeLink.classList.add('text-primary', 'bg-blue-50', 'border-r-4', 'border-primary');
             }
@@ -365,74 +334,57 @@
             initializeChat() {
                 const userInput = document.getElementById('user-input');
                 const sendBtn = document.getElementById('send-btn');
-                const chatMessages = document.getElementById('chat-messages');
 
                 const sendMessage = async () => {
                     const message = userInput.value.trim();
                     if (!message) return;
 
-                    // Add user message
                     this.addMessage(message, 'user');
                     userInput.value = '';
-                    
-                    // Show typing indicator
+
                     this.showTypingIndicator();
 
                     try {
-                        console.log("📤 Sending message to:", `${this.apiBase}/chat`);
-                        const response = await fetch(`${this.apiBase}/chat`, {
+                        const res = await fetch(`${this.apiBase}/chat`, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                message: message,
-                                user_id: 'user123'
-                            })
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ message, user_id: 'user123' })
                         });
 
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
 
-                        const data = await response.json();
-                        console.log("📨 Received response:", data);
+                        const data = await res.json();
                         this.removeTypingIndicator();
-                        
-                        // Add bot response
-                        this.addMessage(data.message, 'bot');
-                        
-                        // Add insights if available
-                        if (data.insights) {
-                            this.addMessage("💡 " + data.insights, 'bot', true);
-                        }
 
-                        // Refresh all data
+                        const botText = data.message || data.reply || 'No reply from server';
+                        this.addMessage(botText, 'bot');
+
+                        if (data.insights) this.addMessage("💡 " + data.insights, 'bot', true);
+
+                        // refresh
                         this.loadDashboardData();
 
-                    } catch (error) {
-                        console.error('❌ Chat error:', error);
+                    } catch (err) {
+                        console.error('Chat error:', err);
                         this.removeTypingIndicator();
-                        this.addMessage('❌ Error: Could not connect to server. Make sure the backend is running on ' + this.apiBase, 'bot');
+                        this.addMessage('❌ Error: Could not connect to server at ' + this.apiBase + '. Check backend and CORS.', 'bot');
                     }
                 };
 
-                // Event listeners
                 sendBtn.addEventListener('click', sendMessage);
-                userInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') sendMessage();
-                });
+                userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 
-                // Quick actions
+                // Quick actions: use currentTarget so <i> clicks don't break it
                 document.querySelectorAll('.quick-action').forEach(button => {
                     button.addEventListener('click', (e) => {
-                        const message = e.target.getAttribute('data-message');
-                        userInput.value = message;
+                        const src = e.currentTarget || button;
+                        const message = src.getAttribute('data-message');
+                        if (!message) return;
+                        document.getElementById('user-input').value = message;
                         sendMessage();
                     });
                 });
 
-                // Focus on input
                 userInput.focus();
             }
 
@@ -440,12 +392,12 @@
                 const chatMessages = document.getElementById('chat-messages');
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message-enter';
-                
+
                 if (sender === 'user') {
                     messageDiv.innerHTML = `
                         <div class="flex items-start space-x-3 justify-end">
                             <div class="bg-primary text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-md">
-                                <p>${text}</p>
+                                <p>${escapeHtml(String(text))}</p>
                             </div>
                             <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
                                 <i class="fas fa-user text-gray-600 text-sm"></i>
@@ -460,18 +412,19 @@
                                 <i class="fas fa-robot text-white text-sm"></i>
                             </div>
                             <div class="${bgClass} rounded-2xl rounded-tl-none px-4 py-3 max-w-md">
-                                <p class="text-gray-800">${text}</p>
+                                <p class="text-gray-800">${escapeHtml(String(text))}</p>
                             </div>
                         </div>
                     `;
                 }
-                
+
                 chatMessages.appendChild(messageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
 
             showTypingIndicator() {
                 const chatMessages = document.getElementById('chat-messages');
+                this.removeTypingIndicator();
                 const typingDiv = document.createElement('div');
                 typingDiv.id = 'typing-indicator';
                 typingDiv.className = 'message-enter';
@@ -483,8 +436,8 @@
                         <div class="bg-gray-50 rounded-2xl rounded-tl-none px-4 py-3">
                             <div class="flex space-x-1">
                                 <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:0.08s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:0.16s"></div>
                             </div>
                         </div>
                     </div>
@@ -494,132 +447,113 @@
             }
 
             removeTypingIndicator() {
-                const typingIndicator = document.getElementById('typing-indicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
+                const el = document.getElementById('typing-indicator');
+                if (el) el.remove();
             }
 
             async loadDashboardData() {
                 try {
-                    console.log("📊 Loading dashboard data...");
-                    
                     const expensesResponse = await fetch(`${this.apiBase}/expenses?days=30`);
-                    if (!expensesResponse.ok) throw new Error('Failed to load expenses');
-                    const expensesData = await expensesResponse.json();
+                    const expensesData = expensesResponse.ok ? await expensesResponse.json() : { expenses: [] };
 
-                    const categoryResponse = await fetch(`${this.apiBase}/spending-by-category?days=30`);
-                    if (!categoryResponse.ok) throw new Error('Failed to load categories');
-                    const categoryData = await categoryResponse.json();
+                    const catResponse = await fetch(`${this.apiBase}/spending-by-category?days=30`);
+                    const catRaw = catResponse.ok ? await catResponse.json() : {};
+                    
+                    // normalize shapes
+                    const expenses = Array.isArray(expensesData) ? expensesData : (expensesData.expenses || []);
+                    const categoryData = normalizeCategoryData(catRaw);
 
-                    this.updateStats(expensesData.expenses, categoryData);
+                    this.updateStats(expenses, categoryData);
                     this.updateChart(categoryData);
                     this.updateCategories(categoryData);
 
-                } catch (error) {
-                    console.error('❌ Error loading dashboard data:', error);
+                } catch (err) {
+                    console.error('❌ Error loading dashboard data:', err);
                 }
             }
 
             async loadExpensesData() {
                 try {
-                    const expensesResponse = await fetch(`${this.apiBase}/expenses?days=365`);
-                    if (!expensesResponse.ok) throw new Error('Failed to load expenses');
-                    const expensesData = await expensesResponse.json();
-
-                    this.updateAllExpenses(expensesData.expenses);
-                    this.updateExpenseStats(expensesData.expenses);
-
-                } catch (error) {
-                    console.error('❌ Error loading expenses data:', error);
+                    const res = await fetch(`${this.apiBase}/expenses?days=365`);
+                    const data = res.ok ? await res.json() : { expenses: [] };
+                    const expenses = Array.isArray(data) ? data : (data.expenses || []);
+                    this.updateAllExpenses(expenses);
+                    this.updateExpenseStats(expenses);
+                } catch (err) {
+                    console.error('❌ Error loading expenses data:', err);
                 }
             }
 
             async loadAnalyticsData() {
                 try {
-                    const expensesResponse = await fetch(`${this.apiBase}/expenses?days=90`);
-                    if (!expensesResponse.ok) throw new Error('Failed to load expenses');
-                    const expensesData = await expensesResponse.json();
-
-                    this.updateAnalytics(expensesData.expenses);
-                    this.updateTrendsChart(expensesData.expenses);
-
-                } catch (error) {
-                    console.error('❌ Error loading analytics data:', error);
+                    const res = await fetch(`${this.apiBase}/expenses?days=90`);
+                    const data = res.ok ? await res.json() : { expenses: [] };
+                    const expenses = Array.isArray(data) ? data : (data.expenses || []);
+                    this.updateAnalytics(expenses);
+                    this.updateTrendsChart(expenses);
+                } catch (err) {
+                    console.error('❌ Error loading analytics data:', err);
                 }
             }
 
             updateStats(expenses, categoryData) {
-                // Weekly spending (last 7 days)
-                const weeklyExpenses = expenses.filter(exp => {
-                    const expenseDate = new Date(exp.date);
-                    const weekAgo = new Date();
-                    weekAgo.setDate(weekAgo.getDate() - 7);
-                    return expenseDate >= weekAgo;
+                const now = new Date();
+                const weekAgo = new Date(); weekAgo.setDate(now.getDate() - 7);
+
+                const weeklyExpenses = (expenses || []).filter(exp => {
+                    const d = parseDateLocal(exp.date || exp.created_at || exp.date_str);
+                    return d >= weekAgo;
                 });
-                const weeklyTotal = weeklyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+                const weeklyTotal = weeklyExpenses.reduce((s, e) => s + Number(e.amount || 0), 0);
                 document.getElementById('weekly-spending').textContent = `₹${weeklyTotal.toFixed(2)}`;
 
-                // Monthly spending (all expenses from last 30 days)
-                const monthlyTotal = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+                const monthlyTotal = (expenses || []).reduce((s, e) => s + Number(e.amount || 0), 0);
                 document.getElementById('monthly-spending').textContent = `₹${monthlyTotal.toFixed(2)}`;
 
-                // Top category
-                const topCategory = Object.entries(categoryData).sort((a, b) => b[1] - a[1])[0];
-                if (topCategory) {
-                    document.getElementById('top-category').textContent = topCategory[0];
-                } else {
-                    document.getElementById('top-category').textContent = '-';
-                }
+                const top = Object.entries(categoryData || {}).sort((a,b)=>b[1]-a[1])[0];
+                document.getElementById('top-category').textContent = top ? top[0] : '-';
             }
 
             updateAllExpenses(expenses) {
                 const container = document.getElementById('all-expenses');
-                
                 if (!expenses || expenses.length === 0) {
                     container.innerHTML = '<p class="text-gray-500 text-center py-8">No expenses yet. Start by adding expenses in the chat!</p>';
                     return;
                 }
 
-                container.innerHTML = expenses.map(expense => `
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-receipt text-blue-600"></i>
+                container.innerHTML = expenses.map(expense => {
+                    const amountNum = Number(expense.amount || 0);
+                    const dateStr = expense.date || expense.created_at || '';
+                    return `
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-receipt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">${escapeHtml(String(expense.description || expense.note || 'Expense'))}</p>
+                                    <p class="text-sm text-gray-600">${escapeHtml(String(dateStr))}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-medium text-gray-800">${expense.description}</p>
-                                <p class="text-sm text-gray-600">${expense.date}</p>
+                            <div class="text-right">
+                                <p class="font-bold text-red-600 text-lg">-₹${amountNum.toFixed(2)}</p>
+                                <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">${escapeHtml(String(expense.category || 'uncategorized'))}</span>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <p class="font-bold text-red-600 text-lg">-₹${expense.amount.toFixed(2)}</p>
-                            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">${expense.category}</span>
-                        </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             }
 
             updateExpenseStats(expenses) {
-                const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-                
-                // Monthly expenses
-                const monthlyExpenses = expenses.filter(exp => {
-                    const expenseDate = new Date(exp.date);
-                    const monthAgo = new Date();
-                    monthAgo.setDate(monthAgo.getDate() - 30);
-                    return expenseDate >= monthAgo;
-                });
-                const monthlyTotal = monthlyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+                const total = (expenses || []).reduce((s,e) => s + Number(e.amount || 0), 0);
 
-                // Weekly expenses
-                const weeklyExpenses = expenses.filter(exp => {
-                    const expenseDate = new Date(exp.date);
-                    const weekAgo = new Date();
-                    weekAgo.setDate(weekAgo.getDate() - 7);
-                    return expenseDate >= weekAgo;
-                });
-                const weeklyTotal = weeklyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+                const monthAgo = new Date(); monthAgo.setDate(monthAgo.getDate() - 30);
+                const monthlyExpenses = (expenses || []).filter(exp => parseDateLocal(exp.date) >= monthAgo);
+                const monthlyTotal = monthlyExpenses.reduce((s,e) => s + Number(e.amount || 0), 0);
+
+                const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
+                const weeklyExpenses = (expenses || []).filter(exp => parseDateLocal(exp.date) >= weekAgo);
+                const weeklyTotal = weeklyExpenses.reduce((s,e) => s + Number(e.amount || 0), 0);
 
                 document.getElementById('total-expenses').textContent = `₹${total.toFixed(2)}`;
                 document.getElementById('month-expenses').textContent = `₹${monthlyTotal.toFixed(2)}`;
@@ -627,159 +561,110 @@
             }
 
             updateAnalytics(expenses) {
-                if (expenses.length === 0) return;
+                if (!expenses || expenses.length === 0) return;
 
-                // Top category
                 const categories = {};
-                expenses.forEach(exp => {
-                    categories[exp.category] = (categories[exp.category] || 0) + exp.amount;
-                });
-                const topCategory = Object.entries(categories).sort((a, b) => b[1] - a[1])[0];
-                if (topCategory) {
-                    document.getElementById('top-category-analytics').textContent = `${topCategory[0]} (₹${topCategory[1].toFixed(2)})`;
-                }
+                expenses.forEach(exp => { categories[exp.category || 'uncategorized'] = (categories[exp.category || 'uncategorized'] || 0) + Number(exp.amount || 0); });
+                const top = Object.entries(categories).sort((a,b)=>b[1]-a[1])[0];
+                if (top) document.getElementById('top-category-analytics').textContent = `${top[0]} (₹${top[1].toFixed(2)})`;
 
-                // Average daily spend
                 const dailyTotals = {};
                 expenses.forEach(exp => {
-                    dailyTotals[exp.date] = (dailyTotals[exp.date] || 0) + exp.amount;
+                    const d = parseDateLocal(exp.date);
+                    const key = d.toISOString().slice(0,10);
+                    dailyTotals[key] = (dailyTotals[key] || 0) + Number(exp.amount || 0);
                 });
-                const avgDaily = Object.values(dailyTotals).reduce((a, b) => a + b, 0) / Object.keys(dailyTotals).length;
+                const avgDaily = Object.values(dailyTotals).reduce((a,b)=>a+b,0) / (Object.keys(dailyTotals).length || 1);
                 document.getElementById('avg-daily').textContent = `₹${avgDaily.toFixed(2)}`;
 
-                // Most frequent expense
                 const frequency = {};
                 expenses.forEach(exp => {
-                    const desc = exp.description.toLowerCase();
+                    const desc = (exp.description || exp.note || '').toString().toLowerCase();
+                    if (!desc) return;
                     frequency[desc] = (frequency[desc] || 0) + 1;
                 });
-                const frequent = Object.entries(frequency).sort((a, b) => b[1] - a[1])[0];
-                if (frequent) {
-                    document.getElementById('frequent-expense').textContent = frequent[0];
-                }
+                const frequent = Object.entries(frequency).sort((a,b)=>b[1]-a[1])[0];
+                if (frequent) document.getElementById('frequent-expense').textContent = frequent[0];
             }
 
             updateChart(categoryData) {
-                const ctx = document.getElementById('spendingChart').getContext('2d');
-                
-                if (this.chart) {
-                    this.chart.destroy();
-                }
+                try {
+                    const ctx = document.getElementById('spendingChart').getContext('2d');
+                    if (this.chart) this.chart.destroy();
 
-                const categories = Object.keys(categoryData);
-                const amounts = Object.values(categoryData);
+                    const categories = Object.keys(categoryData || {});
+                    const amounts = Object.values(categoryData || {});
 
-                if (categories.length === 0) {
-                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-                    ctx.fillStyle = '#9CA3AF';
-                    ctx.font = '16px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('No data yet', ctx.canvas.width / 2, ctx.canvas.height / 2);
-                    return;
-                }
-
-                const backgroundColors = [
-                    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-                    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
-                ];
-
-                this.chart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: categories,
-                        datasets: [{
-                            data: amounts,
-                            backgroundColor: backgroundColors,
-                            borderWidth: 2,
-                            borderColor: '#fff'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    padding: 20,
-                                    usePointStyle: true,
-                                }
-                            }
-                        },
-                        cutout: '60%'
+                    if (categories.length === 0) {
+                        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                        ctx.fillStyle = '#9CA3AF';
+                        ctx.font = '16px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('No data yet', ctx.canvas.width / 2, ctx.canvas.height / 2);
+                        return;
                     }
-                });
+
+                    const backgroundColors = categories.map((_, i) => {
+                        // pick a palette, repeat if necessary
+                        const palette = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'];
+                        return palette[i % palette.length];
+                    });
+
+                    this.chart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: { labels: categories, datasets: [{ data: amounts, backgroundColor: backgroundColors, borderWidth: 2, borderColor: '#fff' }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } } }, cutout: '60%' }
+                    });
+                } catch (err) {
+                    console.error('Chart error:', err);
+                }
             }
 
             updateTrendsChart(expenses) {
-                const ctx = document.getElementById('trendsChart').getContext('2d');
-                
-                if (this.trendsChart) {
-                    this.trendsChart.destroy();
+                try {
+                    const ctx = document.getElementById('trendsChart').getContext('2d');
+                    if (this.trendsChart) this.trendsChart.destroy();
+
+                    // Example: monthly totals for last 6 months (mocked from expenses if present)
+                    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+                    const monthlyData = [2500, 3200, 2800, 4100, 3700, 4500];
+
+                    this.trendsChart = new Chart(ctx, {
+                        type: 'line',
+                        data: { labels: months, datasets: [{ label: 'Monthly Spending', data: monthlyData, borderColor: '#3B82F6', backgroundColor: 'rgba(59,130,246,0.1)', borderWidth: 2, fill: true, tension: 0.4 }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } } }
+                    });
+                } catch (err) {
+                    console.error('Trends chart error:', err);
                 }
-
-                // Simple mock data for trends
-                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-                const monthlyData = [2500, 3200, 2800, 4100, 3700, 4500];
-
-                this.trendsChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: months,
-                        datasets: [{
-                            label: 'Monthly Spending',
-                            data: monthlyData,
-                            borderColor: '#3B82F6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    display: false
-                                }
-                            },
-                            x: {
-                                grid: {
-                                    display: false
-                                }
-                            }
-                        }
-                    }
-                });
             }
 
             updateCategories(categoryData) {
                 const container = document.getElementById('categories-list');
-                const categories = Object.entries(categoryData).sort((a, b) => b[1] - a[1]);
-                
+                const categories = Object.entries(categoryData || {}).sort((a, b) => b[1] - a[1]);
                 if (categories.length === 0) {
                     container.innerHTML = '<p class="text-gray-500 text-center">No categories yet</p>';
                     return;
                 }
-
                 container.innerHTML = categories.map(([category, amount]) => `
                     <div class="flex justify-between items-center py-2">
-                        <span class="text-gray-700 capitalize">${category}</span>
-                        <span class="font-bold text-gray-800">₹${amount.toFixed(2)}</span>
+                        <span class="text-gray-700 capitalize">${escapeHtml(String(category))}</span>
+                        <span class="font-bold text-gray-800">₹${Number(amount || 0).toFixed(2)}</span>
                     </div>
                 `).join('');
             }
         }
 
-        // Initialize dashboard when page loads
+        // small utility to avoid injecting unescaped HTML in messages
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             new FinanceDashboard();
         });

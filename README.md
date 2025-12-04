@@ -3,6 +3,9 @@ FinSet - AI Personal Finance Assistant 💰
 A smart personal finance chatbot that helps you track expenses, analyze spending patterns, and get AI-powered financial insights using natural language.
 
 <img width="1919" height="887" alt="image" src="https://github.com/user-attachments/assets/f7bb29ba-9422-4068-86e7-54fc8b8d922d" />
+<img width="1895" height="875" alt="image" src="https://github.com/user-attachments/assets/f268fd60-0b30-463a-943f-72937d4f139d" />
+<img width="1919" height="880" alt="image" src="https://github.com/user-attachments/assets/9c7ce670-479d-42ea-998d-cdc294def822" />
+
 
 
 🌟 Features
